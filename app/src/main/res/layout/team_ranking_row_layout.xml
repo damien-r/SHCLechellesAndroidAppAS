@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/team_ranking_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:text="ID"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text" />
+
+        <ImageView
+            android:id="@+id/team_ranking_logo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/lechelles_t" />
+
+        <TextView
+            android:id="@+id/team_ranking_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical" >
+
+            <!-- <TextView
+                android:id="@+id/team_ranking_mj"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/team_ranking_mg"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/team_ranking_mp"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" /> -->
+
+            <TextView
+                android:id="@+id/team_ranking_goal"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:text="76/87(-3)"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/team_ranking_points"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="10"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/text" />
+        </LinearLayout>
+
+    </LinearLayout>
+

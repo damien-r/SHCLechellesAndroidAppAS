@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SHC Léchelles Coyotes</string>
+    <string name="title_section1">Résumé</string>
+    <string name="title_section2">Prochains matchs</string>
+    <string name="title_section3">Derniers matchs</string>
+    <string name="title_section4">Equipes</string>
+    <string name="title_section5">Joueurs</string>
+    <string name="title_section6">Paramètres</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="credit">Crédit</string>
+    <string name="loading">Chargement...</string>
+    <string name="credit_text">      Florian Rossier       \n Florian.rossier@gmail.com</string>
+    <string name="title_activity_splash_screen">SHC Léchelles</string>
+    <string name="title_activity_team_fragment">TeamFragment</string>
+
+</resources>

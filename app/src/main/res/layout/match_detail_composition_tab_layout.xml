@@ -1,0 +1,136 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+<RelativeLayout
+    android:id="@+id/next_match_container"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center_vertical|center_horizontal" >
+   <LinearLayout
+        android:id="@+id/vert"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/team_away_logo"
+        android:layout_toRightOf="@+id/team_loc_logo"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/horz_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:id="@+id/match_detail_result_home"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="40dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/match_detail__vs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:minWidth="25dp"
+                android:text=" - "
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/match_detail_result_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="40dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:id="@+id/match_detail_tiers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="location"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+<ImageView
+        android:id="@+id/match_detail_team_away_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/team_loc_logo"
+        android:maxHeight="30dp"
+        android:maxWidth="30dp"
+        android:minHeight="30dp"
+        android:minWidth="30dp"
+        android:src="@drawable/logo_tmp" />
+<ImageView
+        android:id="@+id/match_detail_team_loc_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:maxHeight="30dp"
+        android:maxWidth="30dp"
+        android:minHeight="30dp"
+        android:minWidth="30dp"
+        android:src="@drawable/logo_tmp" />
+<TextView
+        android:id="@+id/match_detail_team_away"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/match_detail_team_away_logo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:text="TextView"
+        android:textColor="@color/text" />
+<TextView
+        android:id="@+id/match_detail_team_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/match_detail_team_loc_logo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:text="TextView"
+        android:textColor="@color/text" />
+</RelativeLayout>
+
+<TextView
+    android:id="@+id/team_ranking_rank"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp"
+    android:text="Composition"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="@color/text" />
+   <ListView
+        android:id="@+id/match_detail_composition_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+
+</LinearLayout>
