@@ -10,6 +10,12 @@
         android:targetSdkVersion="21" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission android:name="com.rossier.shclechelles.gcm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.rossier.shclechelles.gcm.permission.C2D_MESSAGE" />
 
     <application
         tools:replace="android:icon"
@@ -18,6 +24,35 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name="com.orm.SugarApp">
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.rossier.shclechelles" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.rossier.shclechelles.service.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.rossier.shclechelles.service.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.rossier.shclechelles.service.RegistrationIntentService"
+            android:exported="false">
+        </service>
+
         <meta-data android:name="DATABASE" android:value="notif_state.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />

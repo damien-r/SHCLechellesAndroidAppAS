@@ -3,6 +3,7 @@ package com.rossier.shclechelles;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.GcmPubSub;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orm.StringUtil;
@@ -55,6 +57,7 @@ public class NotifListFragment extends ListFragment {
 	private Gson gson = new Gson();
 	private SwipeRefreshLayout layout;
 	private boolean first = true;
+	private Context context;
 	public interface OnTeamSelectedListener {
 	    /** Called by HeadlinesFragment when a list item is selected */
 	    public void onTeamSelected(int position);
@@ -65,22 +68,16 @@ public class NotifListFragment extends ListFragment {
 	    super.onCreate(savedInstanceState); 
 	    setRetainInstance(true);
 	    initLayout();
-	    
+	    context = getContext();
 
 
 	    
 	    if(Data.getInstance().getTeamsLightData()==null){
 	    	new TeamLoadTask().execute();
 	    }else{
+
 	    	teamsList = Data.getInstance().getTeamsLightData();
 	    	first = false;
-			List<NotifState> notifState = NotifState.listAll(NotifState.class);
-			if(notifState.size() == 0){
-				for(TeamLight team : teamsList){
-					NotifState state = new NotifState(team.getTopicId(), false);
-					state.save();
-				}
-			}
 	    }
 	    setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList));
 
@@ -132,6 +129,8 @@ public class NotifListFragment extends ListFragment {
 	  public void onListItemClick(ListView l, View v, int position, long id) {
 		  //registration
 	  }
+
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -204,14 +203,6 @@ public class NotifListFragment extends ListFragment {
 						Toast.LENGTH_SHORT).show();
 
 			} else if (teamView != null) {
-
-				List<NotifState> notifState = NotifState.listAll(NotifState.class);
-				if(notifState.size() == 0){
-					for(TeamLight team : teamsList){
-						NotifState state = new NotifState(team.getTopicId(), false);
-						state.save();
-					}
-				}
 				setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList));
 				Data.getInstance().setTeamsLightData(teamsList);
 				layout.setRefreshing(false);
