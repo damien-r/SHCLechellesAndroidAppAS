@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +31,7 @@ import com.rossier.data.Team;
 import com.rossier.data.TeamLight;
 import com.rossier.shclechelles.adapter.TeamAdapter;
 import com.rossier.shclechelles.adapter.TeamNotifAdapter;
+import com.rossier.shclechelles.service.RegistrationIntentService;
 import com.rossier.shclechelles.utils.ListFragmentSwipeRefreshLayout;
 import com.rossier.shclechelles.utils.Utils;
 
@@ -58,6 +61,7 @@ public class NotifListFragment extends ListFragment {
 	private SwipeRefreshLayout layout;
 	private boolean first = true;
 	private Context context;
+	private NotifListFragment current;
 	public interface OnTeamSelectedListener {
 	    /** Called by HeadlinesFragment when a list item is selected */
 	    public void onTeamSelected(int position);
@@ -69,6 +73,7 @@ public class NotifListFragment extends ListFragment {
 	    setRetainInstance(true);
 	    initLayout();
 	    context = getContext();
+		current = this;
 
 
 	    
@@ -79,10 +84,13 @@ public class NotifListFragment extends ListFragment {
 	    	teamsList = Data.getInstance().getTeamsLightData();
 	    	first = false;
 	    }
-	    setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList));
+	    setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList, this));
 
 	}
-	
+
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -127,7 +135,7 @@ public class NotifListFragment extends ListFragment {
 
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) {
-		  //registration
+		  Log.i("NotifListFragment","Test something");
 	  }
 
 
@@ -203,7 +211,7 @@ public class NotifListFragment extends ListFragment {
 						Toast.LENGTH_SHORT).show();
 
 			} else if (teamView != null) {
-				setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList));
+				setListAdapter(new TeamNotifAdapter(getActivity().getApplicationContext(), R.layout.param_layout, teamsList, current));
 				Data.getInstance().setTeamsLightData(teamsList);
 				layout.setRefreshing(false);
 				Toast.makeText(getActivity(), "Mise à jour réussie",

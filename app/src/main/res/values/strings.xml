@@ -15,5 +15,6 @@
     <string name="credit_text">      Florian Rossier       \n Florian.rossier@gmail.com</string>
     <string name="title_activity_splash_screen">SHC Léchelles</string>
     <string name="title_activity_team_fragment">TeamFragment</string>
+    <item type="id" name="TAG_ONLINE_ID"/>
 
 </resources>
