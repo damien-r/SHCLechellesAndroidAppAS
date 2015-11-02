@@ -1,13 +1,14 @@
 package com.rossier.shclechelles;
 
+import com.google.gson.Gson;
+import com.rossier.data.Match;
+
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.MenuItem;
-
-import com.rossier.data.Match;
 
 public class MatchDetailFragment extends FragmentActivity {
     private FragmentTabHost mTabHost;
@@ -34,10 +35,10 @@ public class MatchDetailFragment extends FragmentActivity {
                 mTabHost.newTabSpec("tab2").setIndicator("Buts", null),
                 FragmentScoresMatchDetail.class, arg1);
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab3").setIndicator("Penalités", null),
+                mTabHost.newTabSpec("tab3").setIndicator("Penal.", null),
                 FragmentPenalityMatchDetail.class, arg1);
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab4").setIndicator("Composition", null),
+                mTabHost.newTabSpec("tab4").setIndicator("Compo.", null),
                 FragmentCompositionMatchDetail.class, arg1);
         //setContentView(R.layout.match_detail_layout);
        

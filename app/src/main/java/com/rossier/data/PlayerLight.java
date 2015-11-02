@@ -2,13 +2,14 @@ package com.rossier.data;
 
 import java.util.Date;
 
-public class PlayerLight {
+public class PlayerLight implements Comparable{
 
 	private int id;
 	private String jersey_num;
 	private String name;
 	private String position;
 	private Date last_update;
+	private boolean isHome;
 	
 	public PlayerLight(int id, String jersey_num, String name, String position) {
 		super();
@@ -58,12 +59,20 @@ public class PlayerLight {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean isHome() {
+		return isHome;
+	}
+
+	public void setIsHome(boolean isHome) {
+		this.isHome = isHome;
+	}
+
+	@Override
+	public int compareTo(Object another) {
+		PlayerLight anotherP = (PlayerLight) another;
+		if (isHome && !anotherP.isHome()) return -1;
+		if (!isHome && anotherP.isHome()) return 1;
+		return 0;
+	}
 }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/match_detail_arbitre"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:id="@+id/vert"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/team_away_logo"
+        android:layout_toRightOf="@+id/team_loc_logo"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:id="@+id/notif_ligue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ligue"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/notif_team_away_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/team_loc_logo"
+        android:maxHeight="5dp"
+        android:maxWidth="5dp"
+        android:minHeight="5dp"
+        android:minWidth="5dp"
+        android:src="@drawable/logo_tmp"
+        android:nestedScrollingEnabled="false"
+        android:layout_alignRight="@+id/notif_team_away"
+        android:layout_alignEnd="@+id/notif_team_away"
+        android:layout_above="@+id/notif_team_away" />
+
+    <ImageView
+        android:id="@+id/notif_team_loc_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:maxHeight="5dp"
+        android:maxWidth="5dp"
+        android:minHeight="5dp"
+        android:minWidth="5dp"
+        android:src="@drawable/logo_tmp"
+        android:nestedScrollingEnabled="false"
+        android:layout_above="@+id/notif_team_away" />
+
+    <TextView
+        android:id="@+id/notif_team_away"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/team_away_logo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:text="TextView"
+        android:textColor="@color/text"
+        android:maxWidth="170dp"
+        android:minWidth="170dp"
+        android:gravity="right" />
+
+    <TextView
+        android:id="@+id/notif_team_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/team_loc_logo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:text="TextView"
+        android:textColor="@color/text"
+        android:maxWidth="170dp"
+        android:minWidth="170dp" />
+
+    <LinearLayout
+        android:id="@+id/horz_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_horizontal"
+        android:layout_gravity="top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/notif_result_home"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="40dp"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/notif_vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:minWidth="25dp"
+            android:text=" - "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/notif_result_away"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="40dp"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+</RelativeLayout>

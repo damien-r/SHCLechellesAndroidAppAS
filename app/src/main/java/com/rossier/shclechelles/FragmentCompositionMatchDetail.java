@@ -1,5 +1,13 @@
 package com.rossier.shclechelles;
 
+import com.google.gson.Gson;
+import com.rossier.data.Goal;
+import com.rossier.data.Match;
+import com.rossier.data.PlayerLight;
+import com.rossier.shclechelles.adapter.MatchCompositionDetailAdapter;
+import com.rossier.shclechelles.adapter.MatchScoresDetailAdapter;
+import com.rossier.shclechelles.utils.Utils;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,10 +17,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.rossier.data.Match;
-import com.rossier.data.PlayerLight;
-import com.rossier.shclechelles.utils.Utils;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class FragmentCompositionMatchDetail extends Fragment {
 
@@ -26,7 +33,7 @@ public class FragmentCompositionMatchDetail extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.match_detail_penality_tab_layout, container, false);
+        View v = inflater.inflate(R.layout.match_detail_composition_tab_layout, container, false);
         TextView team_home = (TextView) v.findViewById(R.id.match_detail_team_home);
         TextView team_away = (TextView) v.findViewById(R.id.match_detail_team_away);
         TextView team_home_result = (TextView) v.findViewById(R.id.match_detail_result_home);
@@ -57,22 +64,22 @@ public class FragmentCompositionMatchDetail extends Fragment {
         logo_away.setImageResource(Utils.getLogo(match.getTeam_away()));
 
 
-        /*ListView tv = (ListView) v.findViewById(R.id.match_detail_scores_list);
-        long id =0;
+        ListView tv = (ListView) v.findViewById(R.id.match_detail_composition_list);
+        int id =0;
         if(match!=null){
-            for(PlayerLight player : match.get){
-                player.setHome(true);
+            for(PlayerLight player : match.getPlayers_home()){
+                player.setIsHome(true);
                 player.setId(id++);
             }
-            for(PlayerLight player : match.getScorers_away()){
+            for(PlayerLight player : match.getPlayers_away()){
                 player.setId(id++);
             }
         }
-        ArrayList<Goal> listPlayer = new ArrayList<Goal>();
-        listGoal.addAll(match.getScorers_home());
-        listGoal.addAll(match.getScorers_away());
-        Collections.sort(listGoal);
-        tv.setAdapter(new MatchScoresDetailAdapter(getActivity(), listGoal));*/
+        ArrayList<PlayerLight> listPlayer = new ArrayList<PlayerLight>();
+        listPlayer.addAll(match.getPlayers_home());
+        listPlayer.addAll(match.getPlayers_away());
+        Collections.sort(listPlayer);
+        tv.setAdapter(new MatchCompositionDetailAdapter(getActivity(), listPlayer));
 
         return v;
     }
