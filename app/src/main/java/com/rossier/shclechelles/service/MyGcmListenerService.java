@@ -1,12 +1,12 @@
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,12 +19,8 @@ package com.rossier.shclechelles.service;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -36,17 +32,12 @@ import com.rossier.shclechelles.MainActivity;
 import com.rossier.shclechelles.R;
 import com.rossier.shclechelles.utils.Utils;
 
-import org.apache.http.util.EntityUtils;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 
 public class MyGcmListenerService extends GcmListenerService {
 
     private static final String TAG = "MyGcmListenerService";
-
-
 
 
     /**
@@ -60,9 +51,9 @@ public class MyGcmListenerService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
-        try{
-            message = URLDecoder.decode(message,"UTF-8");
-        }catch (UnsupportedEncodingException ex){
+        try {
+            message = URLDecoder.decode(message, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
             Log.e(TAG, "Fail to convert to UTF-8");
         }
 
@@ -87,7 +78,7 @@ public class MyGcmListenerService extends GcmListenerService {
          * In some cases it may be useful to show a notification indicating to the user
          * that a message was received.
          */
-        sendNotification(from,message);
+        sendNotification(from, message);
         // [END_EXCLUDE]
     }
     // [END receive_message]
@@ -105,31 +96,33 @@ public class MyGcmListenerService extends GcmListenerService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        Log.i("MyGCMListenerService",message);
-        Log.i("MyGCMListenerService",messageUTF8);
-        if(messageUTF8=="")return;
-        MatchNotification match = gson.fromJson(messageUTF8,MatchNotification.class);
+        Log.i("MyGCMListenerService", message);
+        Log.i("MyGCMListenerService", messageUTF8);
+        if (messageUTF8 == "") return;
+        MatchNotification match = gson.fromJson(messageUTF8, MatchNotification.class);
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
+        String text = String.format("%s %d-%d %s (%s)", match.getTeam_home(), match.getResult_home(),
+                match.getResult_away(), match.getTeam_away(), match.getLigue());
         int icon = R.drawable.ic_launcher_shc;
         long when = System.currentTimeMillis();
-       // Notification notification = new Notification(icon, "Nouveaux résultats", when);
+        // Notification notification = new Notification(icon, "Nouveaux résultats", when);
         Notification notification = new Notification.Builder(this.getBaseContext())
-                .setContentText("Nouveaux résultats")
+                .setContentText(text)
                 .setSmallIcon(icon)
                 .setWhen(when)
                 .build();
 
-        NotificationManager mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.match_notif_layout);
         contentView.setTextViewText(R.id.notif_team_home, match.getTeam_home());
         contentView.setTextViewText(R.id.notif_team_away, match.getTeam_away());
-        contentView.setTextViewText(R.id.notif_result_home, match.getResult_home()+"");
-        contentView.setTextViewText(R.id.notif_result_away, match.getResult_away()+"");
+        contentView.setTextViewText(R.id.notif_result_home, match.getResult_home() + "");
+        contentView.setTextViewText(R.id.notif_result_away, match.getResult_away() + "");
         contentView.setTextViewText(R.id.notif_ligue, match.getLigue());
         contentView.setImageViewResource(R.id.notif_team_loc_logo, Utils.getLogo(match.getTeam_home()));
         contentView.setImageViewResource(R.id.notif_team_away_logo, Utils.getLogo(match.getTeam_away()));
