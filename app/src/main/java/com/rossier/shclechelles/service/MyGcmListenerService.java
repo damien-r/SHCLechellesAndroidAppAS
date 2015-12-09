@@ -105,7 +105,7 @@ public class MyGcmListenerService extends GcmListenerService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String text = String.format("%s - %s:  %d-%d (%s)", match.getTeam_home(), match.getTeam_away(), match.getResult_home(),
+        String text = String.format("%s - %s :  %d-%d (%s)", match.getTeam_home(), match.getTeam_away(), match.getResult_home(),
                 match.getResult_away(), match.getLigue());
         int icon = R.drawable.ic_launcher_shc;
         long when = System.currentTimeMillis();
